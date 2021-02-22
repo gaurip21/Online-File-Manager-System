@@ -1,0 +1,326 @@
+{
+	"info": {
+		"_postman_id": "b2cc1c8b-ee0f-4bdb-adec-e53b44776f5b",
+		"name": "CS5220 Homework 3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1.List folders at top level",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/folders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"folders"
+					]
+				},
+				"description": "Lists all folders at top level i.e without any parent folder"
+			},
+			"response": []
+		},
+		{
+			"name": "1.List files at top level",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/files",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"files"
+					]
+				},
+				"description": "Lists files present at top level i.e not in any folder"
+			},
+			"response": []
+		},
+		{
+			"name": "2.List folders in an existing folder",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/files/38",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"files",
+						"38"
+					]
+				},
+				"description": "Lists folders in an existing folder i.e in parent folder"
+			},
+			"response": []
+		},
+		{
+			"name": "2.List files in an existing folder",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/files/38",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"files",
+						"38"
+					]
+				},
+				"description": "Lists files present in an existing level i.e having parent folder."
+			},
+			"response": []
+		},
+		{
+			"name": "3.Add top level folders",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Foo\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/folders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"folders"
+					]
+				},
+				"description": "Adds folders to top level i.e no parent folder"
+			},
+			"response": []
+		},
+		{
+			"name": "4.Add folder in an existing folder",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Bar\",\n    \"parentFolderId\": 44\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/folders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"folders"
+					]
+				},
+				"description": "Adds folders in an existing folder i.e having parent folder"
+			},
+			"response": []
+		},
+		{
+			"name": "5.Add files to top level",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "image",
+							"type": "text"
+						},
+						{
+							"key": "data",
+							"type": "file",
+							"src": "/Users/gauriphatale/Downloads/image.jpeg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/files/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"files",
+						"upload"
+					]
+				},
+				"description": "Adds files to top level without any parent folder"
+			},
+			"response": []
+		},
+		{
+			"name": "6,7.Add files in an existing folder",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "image",
+							"type": "text"
+						},
+						{
+							"key": "data",
+							"type": "file",
+							"src": "/Users/gauriphatale/Downloads/image.jpeg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/files/upload/38",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"files",
+						"upload",
+						"38"
+					]
+				},
+				"description": "Adds files to folder by passing folder id"
+			},
+			"response": []
+		},
+		{
+			"name": "8.Download a specific version of file",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/files/download/image/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"files",
+						"download",
+						"image",
+						"2"
+					]
+				},
+				"description": "Downloads file having specific version."
+			},
+			"response": []
+		},
+		{
+			"name": "9.Download file without specifying a version",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/files/download/image",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"files",
+						"download",
+						"image"
+					]
+				},
+				"description": "Downloads file without specifying any version "
+			},
+			"response": []
+		},
+		{
+			"name": "10.Delete a file",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/files/delete/image",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"files",
+						"delete",
+						"image"
+					]
+				},
+				"description": "Deletes a file and all its versions."
+			},
+			"response": []
+		},
+		{
+			"name": "11.Delete a folder",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/folders/delete/44",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"folders",
+						"delete",
+						"44"
+					]
+				},
+				"description": "Deletes a folder and all its subfolders "
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
